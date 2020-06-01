@@ -1,4 +1,4 @@
-#ConvertToWords
+# ConvertToWords
 
 The convertToWords(number) function receives one parameter when a number is passed as an argument, the function returns a string with the number written its ***alphabetical form***. 
 
@@ -7,7 +7,7 @@ input: 1
 output: "one"
 
 ---
-##Code 
+## Code 
 The code is mostly two arrays one (singleDigitsNumbersArray)that has the numbers from 0-9 and the other one(singleDigitsNumbersNames) has the numbers from 0 to 9 written in its alphabetical form. 
 
 Then there is a varible named(TwoDigitsNumbersEnding ) that holds a string with the ending of most of two digits numbers.
@@ -30,7 +30,7 @@ function retrieveTheLastNumberOfAThreeDigitsNumber(number) {
 ```
 ---
 
-###Function Output
+### Function Output
 
 ![output](images/convertToWordsOutput.jpg)
 
