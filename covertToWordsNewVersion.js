@@ -6,10 +6,6 @@ First make it work with numbers from 0 to 10
 */
 
 function convertToWords(number) {
-    let singleDigitsNumbersArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-    let singleDigitsNumbersNames = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-
     let TwoDigitsNumbersEnding = "teen";
     let twentyAndPlus = "twenty";
     let thirtyAndPlus = "thirty";
@@ -23,164 +19,65 @@ function convertToWords(number) {
     let lastDigit = number - parseInt((number / 10)) * 10;
 
     if (number < 10) {
-        for (let j = 0; j < singleDigitsNumbersArray.length; j++) {
-            if (number == singleDigitsNumbersArray[j]) {
-                return singleDigitsNumbersNames[j];
-            }
-        }
+        return convertSingleDigitNumberToWords(number);
     } else if (number >= 10 && number < 20) {
         if (number == 10) {
             return "ten";
         } else {
-            for (let i = 0; i < singleDigitsNumbersArray.length; i++) {
-                if (lastDigit != 0) {
-                    if (lastDigit == 1) {
-                        return "eleven";
-                    } else {
-                        if (lastDigit == 2) {
-                            return "twelve";
-                        } else if (lastDigit == 3) {
-                            return "thir" + TwoDigitsNumbersEnding;
-                        } else if (lastDigit == 5) {
-                            return "fifth" + TwoDigitsNumbersEnding;
-                        } else {
-                            if (lastDigit == singleDigitsNumbersArray[i]) {
-                                return singleDigitsNumbersNames[i] + TwoDigitsNumbersEnding;
-                            }
-                        }
+            switch (lastDigit) {
+                case 1:
+                    return "eleven";
+                case 2:
+                    return "twelve";
+                case 3:
+                    return "thir" + TwoDigitsNumbersEnding;
+                case 5:
+                    return "fifth" + TwoDigitsNumbersEnding;
+                default:
+                    if (lastDigit >= 0 && lastDigit <= 9) {
+                        return convertSingleDigitNumberToWords(lastDigit) + TwoDigitsNumbersEnding;
                     }
-                }
             }
         }
     }
-    if (number >= 20 && number < 30) {
-        if (number == 20) {
+    switch (true) {
+        case (number == 20):
             return twentyAndPlus;
-        } else {
-            // let twentiesLastDigit = number - parseInt((number / 10)) * 10;
-            for (let k = 0; k < singleDigitsNumbersArray.length; k++) {
-                if (lastDigit != 0) {
-                    if (lastDigit == singleDigitsNumbersArray[k]) {
-                        return twentyAndPlus + "-" + singleDigitsNumbersNames[k];
-                    }
-                }
-            }
-
-        }
-    }
-    if (number >= 30 && number < 40) {
-        if (number == 30) {
+        case (number > 20 && number < 30):
+            return twentyAndPlus + "-" + convertSingleDigitNumberToWords(lastDigit);
+        case (number == 30):
             return thirtyAndPlus;
-        } else {
-            for (let k = 0; k < singleDigitsNumbersArray.length; k++) {
-                if (lastDigit != 0) {
-                    if (lastDigit == singleDigitsNumbersArray[k]) {
-                        return thirtyAndPlus + "-" + singleDigitsNumbersNames[k];
-                    }
-                }
-            }
-
-        }
-    }
-    if (number >= 40 && number < 50) {
-        if (number == 40) {
+        case (number > 30 && number < 40):
+            return thirtyAndPlus + "-" + convertSingleDigitNumberToWords(lastDigit);
+        case (number == 40):
             return fortyAndPlus;
-        } else {
-            for (let k = 0; k < singleDigitsNumbersArray.length; k++) {
-                if (lastDigit != 0) {
-                    if (lastDigit == singleDigitsNumbersArray[k]) {
-                        return fortyAndPlus + "-" + singleDigitsNumbersNames[k];
-                    }
-                }
-            }
-
-        }
-    }
-    if (number >= 50 && number < 60) {
-        if (number == 50) {
+        case (number > 40 && number < 50):
+            return fortyAndPlus + "-" + convertSingleDigitNumberToWords(lastDigit);
+        case (number == 50):
             return fiftyAndPlus;
-        } else {
-            for (let k = 0; k < singleDigitsNumbersArray.length; k++) {
-                if (lastDigit != 0) {
-                    if (lastDigit == singleDigitsNumbersArray[k]) {
-                        return fiftyAndPlus + "-" + singleDigitsNumbersNames[k];
-                    }
-                }
-            }
-
-        }
-    }
-    if (number >= 60 && number < 70) {
-        if (number == 60) {
+        case (number > 50 && number < 60):
+            return fiftyAndPlus + "-" + convertSingleDigitNumberToWords(lastDigit);
+        case (number == 60):
             return sixtyAndPlus;
-        } else {
-            for (let k = 0; k < singleDigitsNumbersArray.length; k++) {
-                if (lastDigit != 0) {
-                    if (lastDigit == singleDigitsNumbersArray[k]) {
-                        return sixtyAndPlus + "-" + singleDigitsNumbersNames[k];
-                    }
-                }
-            }
-
-        }
-    }
-    if (number >= 70 && number < 80) {
-        if (number == 70) {
+        case (number > 60 && number < 70):
+            return sixtyAndPlus + "-" + convertSingleDigitNumberToWords(lastDigit);
+        case (number == 70):
             return seventyAndPlus;
-        } else {
-            for (let k = 0; k < singleDigitsNumbersArray.length; k++) {
-                if (lastDigit != 0) {
-                    if (lastDigit == singleDigitsNumbersArray[k]) {
-                        return seventyAndPlus + "-" + singleDigitsNumbersNames[k];
-                    }
-                }
-            }
-
-        }
-    }
-
-    if (number >= 80 && number < 90) {
-        if (number == 80) {
+        case (number > 70 && number < 80):
+            return seventyAndPlus + "-" + convertSingleDigitNumberToWords(lastDigit);
+        case (number == 80):
             return eightyAndPlus;
-        } else {
-            for (let k = 0; k < singleDigitsNumbersArray.length; k++) {
-                if (lastDigit != 0) {
-                    if (lastDigit == singleDigitsNumbersArray[k]) {
-                        return eightyAndPlus + "-" + singleDigitsNumbersNames[k];
-                    }
-                }
-            }
-
-        }
-    }
-
-    if (number >= 90 && number <= 99) {
-        if (number == 90) {
+        case (number > 80 && number < 90):
+            return eightyAndPlus + "-" + convertSingleDigitNumberToWords(lastDigit);
+        case (number == 90):
             return ninetyAndPlus;
-        } else {
-            for (let k = 0; k < singleDigitsNumbersArray.length; k++) {
-                if (lastDigit != 0) {
-                    if (lastDigit == singleDigitsNumbersArray[k]) {
-                        return ninetyAndPlus + "-" + singleDigitsNumbersNames[k];
-                    }
-                }
-            }
-
-        }
-    }
-    if (number >= 100 && number < 110) {
-        if (number == 100) {
+        case (number > 90 && number <= 99):
+            return ninetyAndPlus + "-" + convertSingleDigitNumberToWords(lastDigit);
+        case (number == 100):
             return oneHundredAndPlus;
-
-        } else {
-            for (let p = 0; p < singleDigitsNumbersArray.length; p++) {
-                if (retrieveTheLastNumberOfAThreeDigitsNumber(number) != 0) {
-                    if (retrieveTheLastNumberOfAThreeDigitsNumber(number) == singleDigitsNumbersArray[p]) {
-                        return oneHundredAndPlus + " " + "and " + singleDigitsNumbersNames[p];
-                    }
-                }
-            }
-        }
+        case (number > 100 && number < 110):
+            let n = retrieveTheLastNumberOfAThreeDigitsNumber(number)
+            return oneHundredAndPlus + " " + "and " + convertSingleDigitNumberToWords(n);
     }
 }
 
@@ -190,6 +87,13 @@ function retrieveTheLastNumberOfAThreeDigitsNumber(number) {
 
     return parseInt(lastDigitOfAThreeDigitNumber);
 }
-console.log(convertToWords(5));
-console.log(convertToWords(13));
-console.log(convertToWords(105));
+function convertSingleDigitNumberToWords(number) {
+    let singleDigitsNumbersArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let singleDigitsNumbersNames = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+
+    for (let j = 0; j < singleDigitsNumbersArray.length; j++) {
+        if (number == singleDigitsNumbersArray[j]) {
+            return singleDigitsNumbersNames[j];
+        }
+    }
+}
